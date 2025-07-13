@@ -2,6 +2,7 @@
 
 import os
 import pickle
+import streamlit as st
 
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
@@ -16,7 +17,7 @@ except ImportError:
 load_dotenv()
 
 # Load and check Gemini API key
-GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY")
+GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY") or st.secrets["api_keys"]["GOOGLE_API_KEY"]
 if not GEMINI_API_KEY:
     raise ValueError("❌ GOOGLE_API_KEY not found in environment variables or .env file.")
 
